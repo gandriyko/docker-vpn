@@ -9,10 +9,17 @@ Installation
 
  * add some OpenVPN configurations
  * method 1:
-    
-       docker build . -t vpn
-       ./run
 
+   build   
+
+       docker build . -t arch-vpn
+   run       
+
+       docker run -ti -v $(pwd)/conf:/etc/openvpn/client --cap-add=NET_ADMIN --device /dev/net/tun --cpus=4 arch-vpn
+
+   or simple 
+   
+       ./run
  * method 2:
      
        docker-compose build
@@ -23,5 +30,5 @@ Installation
 
 Scripts 
 ----------------------------------
-  * `vpn-start` - for start new random connection from `/etc/openvpn/client/\*.conf` or `/etc/openvpn/client/\*.ovpn`
-  * `vpn-check` - check if connection is active
+  * `vpn-start` - for starting new random connection from `/etc/openvpn/client/*.conf` or `/etc/openvpn/client/*.ovpn`
+  * `vpn-check` - checking if connection is active
