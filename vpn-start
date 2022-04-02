@@ -1,5 +1,17 @@
 #!/bin/sh
 
-filename="$(ls /etc/openvpn/client/{*.conf,*ovpn} | shuf -n 1)"
+filename="$(find /data/ -type f -name "*.conf" -o -name "*.ovpn" | shuf -n 1)"
+credentials='/data/credentials.txt'
+
+if [ -z "$filename" ]; then
+  echo "Config OpenVPN dir is empty"
+  exit 0
+fi
+
 echo "Staring VPN with: $filename"
-openvpn $filename
+params=""
+if [ -f "$credentials" ]; then
+    params="--auth-user-pass $credentials"
+fi
+
+openvpn --config $filename $params

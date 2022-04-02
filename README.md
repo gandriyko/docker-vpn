@@ -10,18 +10,22 @@ Installation
  * add some OpenVPN configurations
  * method 1:
 
-   build   
+   build
 
        docker build . -t arch-vpn
-   run       
+   run
 
-       docker run -ti -v $(pwd)/conf:/etc/openvpn/client --cap-add=NET_ADMIN --device /dev/net/tun --cpus=4 arch-vpn
+       docker run -ti -v $(pwd)/data:/data --cap-add=NET_ADMIN --device /dev/net/tun --cpus=2 arch-vpn
 
-   or simple 
-   
-       ./run
+   or without cpu limitation
+
+       docker run -ti -v $(pwd)/data:/data --cap-add=NET_ADMIN --device /dev/net/tun arch-vpn
+
+     or simple 
+
+         ./run
  * method 2:
-     
+
        docker-compose build
        docker-compose up -d
        docker attach arch-vpn

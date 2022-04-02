@@ -9,6 +9,6 @@ services:
     devices:
       - /dev/net/tun
     volumes:
-      - ./conf:/etc/openvpn/client
+      - ./data:/data
     stdin_open: true
     tty: true
