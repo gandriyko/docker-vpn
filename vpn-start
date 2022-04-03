@@ -14,4 +14,4 @@ if [ -f "$credentials" ]; then
     params="--auth-user-pass $credentials"
 fi
 
-openvpn --config $filename $params
+openvpn --config "$filename" $params
