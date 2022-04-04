@@ -7,7 +7,7 @@ Installation
 
        git clone https://github.com/gandriyko/docker-vpn.git
 
- * add some OpenVPN configurations
+ * add some OpenVPN configurations to `data` folder
  * method 1:
 
    build
