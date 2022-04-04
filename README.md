@@ -34,5 +34,5 @@ Installation
 
 Scripts 
 ----------------------------------
-  * `vpn-start` - for starting new random connection from `/etc/openvpn/client/*.conf` or `/etc/openvpn/client/*.ovpn`
+  * `vpn-start` - for starting new random VPN connection
   * `vpn-check` - checking if connection is active
