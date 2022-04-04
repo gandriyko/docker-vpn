@@ -1,10 +1,17 @@
 #!/bin/sh
 
-filename="$(find /data/ -type f -name "*.conf" -o -name "*.ovpn" | shuf -n 1)"
+if [ -f "$1" ]; then
+  filename="$1"
+elif [ -f "/data/$CONFIG" ]; then
+  filename="/data/$CONFIG"
+else
+  filename="$(find /data/ -type f -name "*.conf" -o -name "*.ovpn" | shuf -n 1)"
+fi
+
 credentials='/data/credentials.txt'
 
 if [ -z "$filename" ]; then
-  echo "Config OpenVPN dir is empty"
+  echo "Config OpenVPN dir is empty: $filename"
   exit 0
 fi
 
@@ -14,4 +21,5 @@ if [ -f "$credentials" ]; then
     params="--auth-user-pass $credentials"
 fi
 
+set -x
 openvpn --config "$filename" $params
