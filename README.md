@@ -15,11 +15,11 @@ Installation
        docker build . -t arch-vpn
    run
 
-       docker run -ti -v $(pwd)/data:/data --cap-add=NET_ADMIN --device /dev/net/tun --cpus=2 arch-vpn
+       docker run -ti -v $(pwd)/data:/data --privileged --device /dev/net/tun --cpus=2 arch-vpn
 
    or without cpu limitation
 
-       docker run -ti -v $(pwd)/data:/data --cap-add=NET_ADMIN --device /dev/net/tun arch-vpn
+       docker run -ti -v $(pwd)/data:/data --privileged --device /dev/net/tun arch-vpn
 
      or simple 
 
