@@ -34,5 +34,6 @@ Installation
 
 Scripts 
 ----------------------------------
+  * `wg-start` - for starting new random WireGuard connection
   * `vpn-start` - for starting new random VPN connection
   * `vpn-check` - checking if connection is active
