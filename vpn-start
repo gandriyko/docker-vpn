@@ -2,13 +2,13 @@
 
 if [ -f "$1" ]; then
   filename="$1"
-elif [ -f "/data/$CONFIG" ]; then
-  filename="/data/$CONFIG"
+elif [ -f "/data/ovpn/$CONFIG" ]; then
+  filename="/data/ovpn/$CONFIG"
 else
-  filename="$(find /data/ -type f -name "*.conf" -o -name "*.ovpn" | shuf -n 1)"
+  filename="$(find /data/ovpn/ -type f -name "*.conf" -o -name "*.ovpn" | shuf -n 1)"
 fi
 
-credentials='/data/credentials.txt'
+credentials='/data/ovpn/credentials.txt'
 
 if [ -z "$filename" ]; then
   echo "Config OpenVPN dir is empty: $filename"

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+flag='/tmp/last-wg-connection'
+
+if [ -f $flag ]; then 
+    echo 'Closing old connection...'
+    wg-quick down `cat $flag`    
+    rm $flag
+fi
+
+cp /data/wg/*.* /etc/wireguard/
+chown -R root: /etc/wireguard/
+chmod -R 600 /etc/wireguard/*.*
+
+if [ -f "$1" ]; then
+  filename="$1"
+elif [ -f "/etc/wireguard/$CONFIG" ]; then
+  filename="/etc/wireguard/$CONFIG"
+else
+  filename="$(find /etc/wireguard -type f -name "*.conf" | shuf -n 1)"
+fi
+
+if [ -z "$filename" ]; then
+  echo "Config OpenVPN dir is empty: $filename"
+  exit 0
+fi
+
+echo "Staring WireGuard with: $filename"
+wg-quick up $filename
+echo "$filename" > $flag

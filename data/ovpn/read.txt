@@ -1,0 +1,1 @@
+put some OpenVPN configurations in this folder

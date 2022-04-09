@@ -7,7 +7,7 @@ Installation
 
        git clone https://github.com/gandriyko/docker-vpn.git
 
- * add some OpenVPN configurations to `data` folder
+ * add some OpenVPN configurations to `data/ovpn` or WireGuard configurations to `data/wg` folder  
  * method 1:
 
    build
@@ -15,11 +15,11 @@ Installation
        docker build . -t arch-vpn
    run
 
-       docker run -ti -v $(pwd)/data:/data --privileged --device /dev/net/tun --cpus=2 arch-vpn
+       docker run -ti -v $(pwd)/data:/data --privileged --device /dev/net/tun --cpus=2 vpn
 
    or without cpu limitation
 
-       docker run -ti -v $(pwd)/data:/data --privileged --device /dev/net/tun arch-vpn
+       docker run -ti -v $(pwd)/data:/data --privileged --device /dev/net/tun vpn
 
      or simple 
 
@@ -28,7 +28,7 @@ Installation
 
        docker-compose build
        docker-compose up -d
-       docker attach arch-vpn
+       docker attach vpn
  * There is running **tmux** inside docker with active panel. Enter vpn credentials if needed.
  * Press `control + b %` to open new panel and start working
 
