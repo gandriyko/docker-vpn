@@ -3,7 +3,7 @@ version: '3'
 services:
   my:
     build: .
-    container_name: arch-vpn
+    container_name: vpn
     cap_add:
       - NET_ADMIN
     devices:

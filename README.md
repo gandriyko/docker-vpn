@@ -12,7 +12,7 @@ Installation
 
    build
 
-       docker build . -t arch-vpn
+       docker build . -t vpn
    run
 
        docker run -ti -v $(pwd)/data:/data --privileged --cpus=2 vpn
