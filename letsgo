@@ -1,0 +1,55 @@
+#!/bin/bash
+
+trap "exit" INT TERM
+trap "kill 0" EXIT
+
+# uncomment for debug
+# set -x
+
+VPN_TYPE="$1"
+PROGRAM="$2"
+
+if [[ -z "$PROGRAM" ]]; then
+  echo 'Wrong parameters. Use letsgo vpn "command" or letsgo wg "command"'
+ exit 1
+fi
+
+while true
+do
+  echo "Press [CTRL+C] to stop.."
+  if [[ "$VPN_TYPE" == "vpn" ]]; then
+    vpn-start &
+  elif [[ "$VPN_TYPE" == "wg" ]]; then
+    wg-start &
+  else
+    echo 'Unknown command. Use letsgo vpn "command" or letsgo wg "command"'
+  fi
+
+  if [[ "$VPN_TYPE" == "vpn" ]]; then
+    VNP_PID=$!
+  fi
+  echo 'Waiting for connection...'
+  sleep 5
+  echo '--------------------------------------------------------------------------------'
+  vpn-check
+  myip=$(vpn-check)
+  echo "$myip"
+  echo '--------------------------------------------------------------------------------'
+  if [[ -z "$myip" ]] || [[ $myip =~ "UA" ]]; then
+     echo "VPN failed"
+     if [[ "$VPN_TYPE" == "vpn" ]]; then
+        kill "$VNP_PID"
+     fi
+     continue
+  fi
+  echo '--------------------------------------------------------------------------------'
+  echo "Staring $PROGRAM ..."
+  $PROGRAM &
+  APP_PID=$!
+  sleep 360
+  kill -9 "$APP_PID"
+  if [[ -z "$VNP_PID" ]]; then
+    kill "$VNP_PID"
+  fi
+  sleep 3
+done

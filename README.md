@@ -34,6 +34,8 @@ Installation
 
 Scripts 
 ----------------------------------
-  * `wg-start` - for starting new random WireGuard connection
-  * `vpn-start` - for starting new random VPN connection
-  * `vpn-check` - checking if connection is active
+  * `wg-start` - start new random WireGuard connection
+  * `vpn-start` - start new random VPN connection
+  * `vpn-check` - check if connection is active
+  * `letsgo vpn "some command"` - run some command and periodically (every 10 minutes) change OpenVPN connection
+  * `letsgo wg "some command"` - run some command and periodically (every 10 minutes) change WireGuard connection 
