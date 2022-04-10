@@ -4,7 +4,7 @@ flag='/tmp/last-wg-connection'
 
 if [ -f $flag ]; then 
     echo 'Closing old connection...'
-    wg-quick down `cat $flag`    
+    wg-quick down "$(cat "$flag")"
     rm $flag
 fi
 
@@ -12,7 +12,7 @@ cp /data/wg/*.* /etc/wireguard/
 chown -R root: /etc/wireguard/
 chmod -R 600 /etc/wireguard/*.*
 
-if [ -f "$1" ]; then
+if [ -f "/etc/wireguard/$1.conf" ]; then
   filename="$1"
 elif [ -f "/etc/wireguard/$CONFIG" ]; then
   filename="/etc/wireguard/$CONFIG"
