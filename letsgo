@@ -29,7 +29,7 @@ do
     VNP_PID=$!
   fi
   echo 'Waiting for connection...'
-  sleep 5
+  sleep 10
   echo '--------------------------------------------------------------------------------'
   vpn-check
   myip=$(vpn-check)
@@ -38,7 +38,7 @@ do
   if [[ -z "$myip" ]] || [[ $myip =~ "UA" ]]; then
      echo "VPN failed"
      if [[ "$VPN_TYPE" == "vpn" ]]; then
-        kill "$VNP_PID"
+        kill -9 "$VNP_PID"
      fi
      continue
   fi
@@ -49,7 +49,7 @@ do
   sleep 360
   kill -9 "$APP_PID"
   if [[ -z "$VNP_PID" ]]; then
-    kill "$VNP_PID"
+    kill -9 "$VNP_PID"
   fi
-  sleep 3
+  sleep 10
 done
