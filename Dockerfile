@@ -3,6 +3,10 @@ FROM alpine:latest
 RUN apk add mc htop git wireguard-tools openvpn bash curl wget links tmux
 #RUN pacman -Sy openresolv mc openvpn tmux vim nano git python go htop bash-completion wireguard-tools --noconfirm
 
+# add go 1.8
+COPY --from=golang:1.18-alpine /usr/local/go/ /usr/local/go/
+ENV PATH="/usr/local/go/bin:${PATH}"
+
 WORKDIR /data
 
 # RUN chown -R  root: /etc/wireguard/ && chmod -R 600 /etc/wireguard/*.*

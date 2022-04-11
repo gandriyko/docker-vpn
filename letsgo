@@ -38,6 +38,8 @@ do
   if [[ -z "$myip" ]] || [[ $myip =~ "UA" ]]; then
      echo "VPN failed"
      if [[ "$VPN_TYPE" == "vpn" ]]; then
+        killall vpn-start
+        killall openvpn
         kill -9 "$VNP_PID"
      fi
      continue
@@ -49,6 +51,8 @@ do
   sleep 360
   kill -9 "$APP_PID"
   if [[ -z "$VNP_PID" ]]; then
+    killall vpn-start
+    killall openvpn
     kill -9 "$VNP_PID"
   fi
   sleep 10
