@@ -29,7 +29,7 @@ do
     VNP_PID=$!
   fi
   echo 'Waiting for connection...'
-  sleep 10
+  sleep 6
   echo '--------------------------------------------------------------------------------'
   vpn-check
   myip=$(vpn-check)
