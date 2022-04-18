@@ -20,4 +20,4 @@ COPY wg-start /usr/local/bin/
 COPY letsgo /usr/local/bin/
 
 # CMD /usr/bin/tmux new -d -s mysession "bash --init-file <(echo vpn-start)"; tmux a
-CMD /usr/bin/tmux
+CMD /bin/bash
